@@ -7,10 +7,7 @@ test.beforeEach(async ({ page, user, settingsPage }) => {
   await settingsPage.open();
 });
 
-test('Add profile picture URL from settings', async ({
-  settingsPage,
-  page,
-}) => {
+test('Add short bio from settings', async ({ settingsPage }) => {
   const newBio = faker.person.bio();
 
   await settingsPage.fillInputByPlaceholder('Short bio about you', newBio);

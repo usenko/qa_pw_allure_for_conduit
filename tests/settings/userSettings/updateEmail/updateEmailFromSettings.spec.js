@@ -9,7 +9,6 @@ test.beforeEach(async ({ page, user, settingsPage }) => {
 
 test('Update email from settings', async ({ settingsPage }) => {
   const newEmail = `${faker.person.firstName()}_${faker.internet.email()}`
-    .toLowerCase()
     .replaceAll("'")
     .toLowerCase();
 
