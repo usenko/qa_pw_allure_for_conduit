@@ -3,19 +3,22 @@ import { Logger } from '../../src/common/logger/Logger';
 import { generateNewUserData } from '../../src/common/testData/generateNewUserData';
 import * as allure from 'allure-js-commons';
 import { parseTestTreeHierarchy } from '../../src/common/helpers/allureHelpers';
+import fs from 'fs';
+import path from 'path';
 
 export const test = base.extend<
   {
-    usersNumber;
-    contextsNumber;
+    usersNumber: number;
+    contextsNumber: number;
     pages;
     user;
     users;
-    infoTestLog;
-    addAllureTestHierarchy;
+    infoTestLog: string;
+    addAllureTestHierarchy: string;
   },
   {
-    logger;
+    logger: Logger;
+    clearAllureResults: void;
   }
 >({
   usersNumber: [1, { option: true }],
@@ -83,5 +86,16 @@ export const test = base.extend<
       await use('addAllureTestHierarhy');
     },
     { scope: 'test', auto: true },
+  ],
+  clearAllureResults: [
+    async ({}, use) => {
+      const allureResultsDir = path.resolve(process.cwd(), 'allure-results');
+
+      if (fs.existsSync(allureResultsDir)) {
+        fs.rmSync(allureResultsDir, { recursive: true, force: true });
+      }
+      await use();
+    },
+    { scope: 'worker', auto: true },
   ],
 });
