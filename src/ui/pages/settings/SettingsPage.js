@@ -33,8 +33,6 @@ export class SettingsPage {
     await this.step(`Click the 'Update Settings' button`, async () => {
       await Promise.all([
         this.page.waitForResponse(response => {
-          console.log('👉 МЕТОД:', response.request().method());
-          console.log('👉 URL:', response.url());
           return (
             response.url().includes('user') &&
             response.request().method() === 'PUT' &&
@@ -75,7 +73,7 @@ export class SettingsPage {
     });
   }
 
-  async logout() {
+  async clickLogoutButton() {
     await this.step(`Click 'Or click here to logout.' button`, async () => {
       await this.logoutButton.click();
     });

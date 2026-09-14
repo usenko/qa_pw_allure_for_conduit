@@ -13,12 +13,12 @@ export const test = base.extend<
     pages;
     user;
     users;
-    infoTestLog: string;
-    addAllureTestHierarchy: string;
+    infoTestLog;
+    addAllureTestHierarchy;
   },
   {
     logger: Logger;
-    clearAllureResults: void;
+    clearAllureResults;
   }
 >({
   usersNumber: [1, { option: true }],
@@ -94,7 +94,7 @@ export const test = base.extend<
       if (fs.existsSync(allureResultsDir)) {
         fs.rmSync(allureResultsDir, { recursive: true, force: true });
       }
-      await use();
+      await use('clearAllureResults');
     },
     { scope: 'worker', auto: true },
   ],

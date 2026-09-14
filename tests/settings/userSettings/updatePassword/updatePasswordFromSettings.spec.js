@@ -18,7 +18,7 @@ test('Update password from settings', async ({
   await settingsPage.fillInputByPlaceholder('Password', newPassword);
   await settingsPage.clickUpdateSettingsButton();
   await settingsPage.open();
-  await settingsPage.logout();
+  await settingsPage.clickLogoutButton();
   await signInPage.open();
   await signInPage.fillEmailField(user.email);
   await signInPage.fillPasswordField(newPassword);

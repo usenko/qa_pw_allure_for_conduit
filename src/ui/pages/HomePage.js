@@ -23,4 +23,10 @@ export class HomePage {
       await expect(this.yourFeedTab).toBeVisible();
     });
   }
+
+  async assertYourFeedTabIsNotVisible() {
+    await this.step(`Assert the 'Your Feed' tab is not visible`, async () => {
+      await expect(this.yourFeedTab).toBeHidden();
+    });
+  }
 }
